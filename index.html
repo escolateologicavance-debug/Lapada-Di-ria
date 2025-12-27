@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapada Diária - Gilberto Moreira</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .capa-img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+            margin-bottom: 10px;
+            transition: transform 0.1s;
+        }
+
+        /* Animação de impacto na imagem */
+        .shake {
+            animation: shake 0.2s ease-in-out;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            20% { transform: translate(-3px, 0px) rotate(-1deg); }
+            40% { transform: translate(3px, 2px) rotate(1deg); }
+            60% { transform: translate(-1px, -1px) rotate(1deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .credits {
+            font-size: 0.75rem;
+            color: #777;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        #display-frase {
+            min-height: 100px;
+            margin: 20px 0;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: #f1f1f1;
+            padding: 15px;
+            border-left: 4px solid #e63946;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, #e63946, #b1000e);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-share {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: none; /* Só aparece após a primeira lapada */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="capa.png" id="capa" alt="Lapada Diária" class="capa-img">
+        
+        <div class="credits">
+            © Copyright Gilberto Moreira<br>
+            <strong>Psicanalista Clínico - CBO 2515-50</strong>
+        </div>
+
+        <div id="display-frase">
+            Pronto para a lição de hoje?
+        </div>
+
+        <button class="btn-main" onclick="darLapada()">LAPADA DO DIA!</button>
+        <button id="btnShare" class="btn-share" onclick="compartilharZap()">Enviar essa no WhatsApp 📲</button>
+    </div>
+
+    <audio id="somLapada" src="https://www.myinstants.com/media/sounds/tmp67839800.mp3"></audio>
+
+    <script>
+        const lapadas = [
+            { texto: "Não confunda a paciência de Deus com a aprovação do seu erro.", autor: "Gilberto Moreira" },
+            { texto: "A vida não te bate para te machucar, mas para te acordar do sono da negligência.", autor: "Gilberto Moreira" },
+            { texto: "Quem não aceita a correção do Criador, aceita o chicote do destino.", autor: "Sincrologia" },
+            // Cole aqui suas 400 frases...
+        ];
+
+        let fraseAtual = "";
+
+        function darLapada() {
+            const som = document.getElementById('somLapada');
+            const capa = document.getElementById('capa');
+            const display = document.getElementById('display-frase');
+            const btnShare = document.getElementById('btnShare');
+
+            // 1. Toca o som
+            som.currentTime = 0;
+            som.play();
+
+            // 2. Animação de impacto
+            capa.classList.remove('shake');
+            void capa.offsetWidth; // Truque para resetar animação
+            capa.classList.add('shake');
+
+            // 3. Sorteia a frase
+            const sortuda = lapadas[Math.floor(Math.random() * lapadas.length)];
+            fraseAtual = `*Lapada Diária:* "${sortuda.texto}" - _${sortuda.autor}_`;
+            
+            display.innerHTML = `"${sortuda.texto}"<br><small style="color:#e63946">— ${sortuda.autor}</small>`;
+            
+            // 4. Mostra botão de compartilhar
+            btnShare.style.display = "block";
+        }
+
+        function compartilharZap() {
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(fraseAtual)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

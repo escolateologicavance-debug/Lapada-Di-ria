@@ -1,0 +1,17 @@
+{
+  "name": "Lapada Diária",
+  "short_name": "Lapada",
+  "description": "Suporte emocional e comportamental - Psicanálise e Sincrologia",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#e63946",
+  "icons": [
+    {
+      "src": "capa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
