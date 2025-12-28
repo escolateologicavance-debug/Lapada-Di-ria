@@ -111,9 +111,9 @@
 
   <audio id="somLapada" src="som-lapada.mp3"></audio>
 
+<script>
+    const mensagens = [
 
-    <script>
-        const lapadas = [
             { t: "Não confunda a paciência de Deus com a aprovação do seu erro.", a: "Gilberto Moreira" },
             { t: "A vida não te bate para te machucar, mas para te acordar do sono da negligência.", a: "Gilberto Moreira" },
             { t: "Quem não aceita a correção do Criador, aceita o chicote do destino.", a: "Sincrologia" },
@@ -446,9 +446,9 @@
             { t: "O fim de todas as coisas está próximo; sede equilibrados.", a: "1 Pedro 4:7" }
         ];
 
-        let fraseAtual = "";
-
-        function darLapada() {
+            let fraseAtual = "";  / / 
+            
+           function darLapada() {
             const som = document.getElementById('somLapada');
             const capa = document.getElementById('capa');
             const display = document.getElementById('display-frase');
@@ -458,12 +458,12 @@
             som.currentTime = 0;
             som.play();
 
-            // 2. Animação de impacto
+            // 2. Animação de impacto (shake)
             capa.classList.remove('shake');
-            void capa.offsetWidth; // Truque para resetar animação
+            void capa.offsetWidth; 
             capa.classList.add('shake');
 
-                                  // 3. Sorteia a frase
+            // 3. O SORTEIO QUE ESTAVA FALTANDO ENTRA AQUI:
             const sortuda = mensagens[Math.floor(Math.random() * mensagens.length)];
             fraseAtual = `*Lapada Diária:* "${sortuda.t}" - _${sortuda.a}_`;
             
@@ -471,7 +471,6 @@
 
             // 4. Mostra botão de compartilhar
             btnShare.style.display = "block";
-
         }
 
         function compartilharZap() {
