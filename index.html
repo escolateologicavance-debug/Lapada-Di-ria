@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    
+<link rel="manifest" href="manifest.json">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lapada Diária - Gilberto Moreira</title>
@@ -477,6 +480,10 @@
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(fraseAtual)}`;
             window.open(url, '_blank');
         }
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+
     </script>
 </body>
 </html>
