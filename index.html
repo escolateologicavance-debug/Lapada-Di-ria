@@ -462,14 +462,15 @@
             void capa.offsetWidth; // Truque para resetar animação
             capa.classList.add('shake');
 
-            // 3. Sorteia a frase
-            const sortuda = lapadas[Math.floor(Math.random() * lapadas.length)];
-            fraseAtual = `*Lapada Diária:* "${sortuda.texto}" - _${sortuda.autor}_`;
+                                  // 3. Sorteia a frase
+            const sortuda = mensagens[Math.floor(Math.random() * mensagens.length)];
+            fraseAtual = `*Lapada Diária:* "${sortuda.t}" - _${sortuda.a}_`;
             
-            display.innerHTML = `"${sortuda.texto}"<br><small style="color:#e63946">— ${sortuda.autor}</small>`;
-            
+            display.innerHTML = `"${sortuda.t}"<br><small style="color:#e63946">— ${sortuda.a}</small>`;
+
             // 4. Mostra botão de compartilhar
             btnShare.style.display = "block";
+
         }
 
         function compartilharZap() {
